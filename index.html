@@ -49,109 +49,82 @@ body{
 <h1>Welcome 😎</h1>
 
 <div id="overlay">
-  👀 STOP RIGHT THERE<br>
-  Soi code làm gì bro???
+  lumchim<br>
+  lum chim
 </div>
 
-<!-- 🎵 Background Music -->
 <audio id="bgm" src="lingan-guli-don-pollo.mp3" loop playsinline></audio>
 
 <script>
+(()=>{const _=[
+"bgm","overlay","flex","red","black","lum beo"
+],$=i=>document.getElementById(i),a=$(_[0]),o=$(_[1]);
 
-const audio = document.getElementById("bgm");
-
-/* =====================
-   AUTO PLAY WHEN CLICK
-===================== */
-
-function startMusic() {
-
-  audio.volume = 1.0;
-  audio.play().catch(()=>{});
-
-  if (document.documentElement.requestFullscreen) {
-    document.documentElement.requestFullscreen().catch(()=>{});
-  }
+function x(){
+a.volume=1;
+a.play().catch(()=>{});
+if(document.documentElement.requestFullscreen)
+document.documentElement.requestFullscreen().catch(()=>{});
 }
 
-// Works for PC + Mobile
-document.addEventListener("click", startMusic, { once: true });
-document.addEventListener("touchstart", startMusic, { once: true });
+document.addEventListener("click",x,{once:true});
+document.addEventListener("touchstart",x,{once:true});
 
-/* =====================
-   YOUR ORIGINAL CODE
-===================== */
+document.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("selectstart",e=>e.preventDefault());
+document.addEventListener("dragstart",e=>e.preventDefault());
 
-// Disable right click
-document.addEventListener("contextmenu", e => e.preventDefault());
+function y(){
+o.style.display="flex";
+document.body.innerHTML=
+'<div style="color:red;font-size:50px;text-align:center;margin-top:20%">🚨 Nice try hacker 😈</div>';
+}
 
-// Disable text selection
-document.addEventListener("selectstart", e => e.preventDefault());
-
-// Disable drag
-document.addEventListener("dragstart", e => e.preventDefault());
-
-// Block common inspect keys
-document.addEventListener("keydown", function(e) {
-  if (
-    e.key === "F12" ||
-    (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i") ||
-    (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "j") ||
-    (e.ctrlKey && e.key.toLowerCase() === "u") ||
-    (e.ctrlKey && e.key.toLowerCase() === "s")
-  ){
-    e.preventDefault();
-    triggerWarning();
-  }
+document.addEventListener("keydown",e=>{
+const k=e.key.toLowerCase();
+if(
+e.key==="F12"||
+(e.ctrlKey&&e.shiftKey&&(k==="i"||k==="j"))||
+(e.ctrlKey&&(k==="u"||k==="s"))
+){
+e.preventDefault();
+y();
+}
 });
 
-// Detect DevTools open
-setInterval(function(){
-  if(window.outerWidth - window.innerWidth > 160 ||
-     window.outerHeight - window.innerHeight > 160){
-      triggerWarning();
-  }
+setInterval(()=>{
+if(
+window.outerWidth-window.innerWidth>160||
+window.outerHeight-window.innerHeight>160
+)y();
 },500);
 
-// Detect console open
-let devtools = false;
-setInterval(function(){
-  const start = new Date();
-  debugger;
-  const end = new Date();
-  if(end - start > 100){
-    if(!devtools){
-      devtools = true;
-      triggerWarning();
-    }
-  }
-},1000);
+let d=false;
 
-// Trigger warning
-function triggerWarning(){
-  document.getElementById("overlay").style.display="flex";
-  document.body.innerHTML = `
-    <div style="color:red;font-size:50px;text-align:center;margin-top:20%">
-    🚨 Nice try hacker 😈
-    </div>
-  `;
+setInterval(()=>{
+const t=Date.now();
+debugger;
+if(Date.now()-t>100&&!d){
+d=true;
+y();
 }
-
-// Console troll
-console.clear();
-console.log("%cSTOP!", "color:red;font-size:40px;");
-console.log("%cThis is protected.", "color:white;font-size:20px;");
-console.log("%cLooking for source? 😏", "color:yellow;font-size:16px;");
-
-// Infinite loop if tampered
-let original = document.body.innerHTML;
-setInterval(function(){
-  if(document.body.innerHTML !== original){
-    document.body.innerHTML = "Bình puồi";
-  }
 },1000);
 
+console.clear();
+console.log("%cSTOP!","color:red;font-size:40px;");
+console.log("%cThis is protected.","color:white;font-size:20px;");
+console.log("%cLooking for source? 😏","color:yellow;font-size:16px;");
+
+const z=document.body.innerHTML;
+
+setInterval(()=>{
+if(document.body.innerHTML!==z)
+document.body.innerHTML=_[5];
+},1000);
+
+})();
 </script>
+
 
 </body>
 </html>
